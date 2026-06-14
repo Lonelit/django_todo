@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Home page</h1>
-
-</body>
-</html>
+{% extends 'vault/base.html' %}
+{% load static %}
+{% block content %}
+<img src="{% static 'img/drakon.jpg' %}" width="257px" height="376px">
+<div class="my-style">Список моих дел</div>
+{% endblock content %}

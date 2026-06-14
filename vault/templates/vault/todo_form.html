@@ -1,0 +1,13 @@
+{% extends 'vault/base.html' %}
+{% block title %}Добавление нового дела{% endblock title %}
+
+{% block content %}
+<form method="get" style="border: 1px solid #ccc; padding: 10px; margin-bottom: 16px">
+    <strong>Создать дело</strong>
+</form>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn" type="submit">Добавить</button>
+</form>
+{% endblock content %}

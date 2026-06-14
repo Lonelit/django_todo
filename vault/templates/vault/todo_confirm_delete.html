@@ -1,0 +1,16 @@
+{% extends 'vault/base.html' %}
+{% block title %}Удаление дела из списка{% endblock title %}
+
+{% block content %}
+    <h1>Удалить текущее дело?</h1>
+    <p>
+        Вы действительно хотите удалить эту строчку?
+        <strong>{{ account.task }}</strong> (срочность <em>{{ account.importance }}</em>)?
+        Это действие отменить нельзя
+    </p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Да, удалить</button>
+        <a class="btn btn-secondary" href="{% url 'todo_detail' account.pk %}">Отмена</a>
+    </form>
+{% endblock content %}

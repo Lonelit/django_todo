@@ -1,0 +1,22 @@
+{% extends 'vault/base.html' %}
+{% block title %}{{account.task}} - текущее дело{% endblock title %}
+
+{% block content %}
+    <h1>Текущее дело</h1>
+    <table>
+        <tr><th>Задание</th><td>{{ account.task }}</td></tr>
+        <tr><th>Заметка</th><td>{{ account.note }}</td></tr>
+        <tr><th>Срочность</th><td>{{ account.importance }}</td></tr>
+        <tr><th>Дата создания</th><td>{{ account.created_at }}</td></tr>
+        <tr><th>Дата дедлайна</th><td>{{ account.deadline }}</td></tr>
+
+    </table>
+
+    <p style="margin-top: 16px;">
+        <a class="btn btn-secondary" href="{% url 'todo_list' %}">К списку</a>
+        <a class="btn" href="{% url 'todo_edit' account.pk %}">Изменить</a>
+        <a class="btn btn-danger" href="{% url 'todo_delete' account.pk %}">Удалить</a>
+
+    </p>
+
+{% endblock content %}

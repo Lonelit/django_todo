@@ -1,0 +1,57 @@
+{% extends 'vault/base.html' %}
+{% block title %}Мои дела{% endblock title %}
+
+{% block content %}
+    <h1>Мои текущие дела</h1>
+    <p>
+        <a class="btn" href="{% url 'todo_create' %}">Добавить дело</a>
+    </p>
+    {% if accounts %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Дело</th>
+                    <th>Примечание</th>
+                    <th>Срочность</th>
+                    <th>Дата создания</th>
+                    <th>Дата дедлайна</th>
+                </tr>
+            </thead>
+            <tbody>
+                {# Перебираем записи и заполняем таблицу #}
+                {% for account in accounts %}
+                    <tr>
+                        <td><a href="{% url 'todo_detail' pk=account.pk %}">{{ account.task }}</a></td>
+                        <td>{{ account.note }}</td>
+                        <td>{{ account.importance }}</td>
+                        <td>{{ account.created_at }}</td>
+                        <td>{{ account.deadline }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <span>
+            Всего текущих дел - {{ count }}
+        </span>
+        <p class="muted">
+            Показано {{ accounts|length }} из {{ accounts.paginator.count }}
+        </p>
+        {% if accounts.has_other_pages %}
+           <div class="pagination">
+            {% if accounts.has_previous %}
+               <a href="?page=1">&laquo; Первая</a>
+               <a href="?page={{ accounts.previous_page_number }}">Назад</a>
+            {% endif %}
+            <span>
+                Страница {{ accounts.number }} из {{ accounts.paginator.num_pages }}
+            </span>
+            {% if accounts.has_next %}
+               <a href="?page={{ accounts.next_page_number }}">Вперед</a>
+               <a href="?page={{ accounts.paginator.num_pages }}">Последняя &raquo;</a>
+            {% endif %}
+           </div>
+        {% endif %}
+    {% else %}
+        <p class="muted">У вас пока нет ни одной дела.</p>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,64 @@
+{# Базовый шаблон. От него наследуются все страницы приложения. #}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <title>{% block title %}Список дел{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    /* Минимально необходимый CSS — только чтобы было читаемо. */
+    body { font-family: sans-serif; max-width: 800px; margin: 20px auto; padding: 0 16px; color: #222; }
+    header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 8px; margin-bottom: 16px; }
+    header a { margin-right: 12px; text-decoration: none; color: #06c; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; }
+    th { background: #f0f0f0; }
+    form p { margin: 8px 0; }
+    label { display: block; font-weight: bold; margin-top: 8px; }
+    input[type="text"], input[type="password"], input[type="email"] { width: 100%; padding: 6px; box-sizing: border-box; }
+    .btn { display: inline-block; padding: 6px 12px; background: #06c; color: #fff; text-decoration: none; border: 0; cursor: pointer; }
+    .btn-danger { background: #c33; }
+    .btn-secondary { background: #888; }
+    .errors { color: #c33; }
+    .muted { color: #666; font-size: 0.9em; }
+    .pagination {padding: 20px; background: #888; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+
+<header>
+  {# Слева — название и общие ссылки. #}
+  <div>
+    <strong>Список дел</strong>
+    {% if user.is_authenticated %}
+      &nbsp;|&nbsp;
+      <a href="{% url 'todo_list' %}">Список моих дел</a>
+      <a href="{% url 'todo_create' %}">Добавить</a>
+    {% endif %}
+  </div>
+
+  {# Справа — информация о пользователе и кнопки входа/выхода. #}
+  <div>
+    {% if user.is_authenticated %}
+      <span class="muted">{{ user.username }}</span>
+      {# LogoutView в Django 5 ожидает POST, поэтому обернём в форму. #}
+      <form action="{% url 'logout' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button class="btn btn-secondary" type="submit">Выйти</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}">Войти</a> |
+      <a href="{% url 'register' %}">Регистрация</a>
+    {% endif %}
+  </div>
+</header>
+
+<main>
+  {# Блок content переопределяется в дочерних шаблонах. #}
+  {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'vault/base.html' %}
+{% block title %}Регистрация {% endblock title %}
+
+{% block content %}
+<h1>Регистрация</h1>
+{# Общие ошибки формы (не относятся к конкретному полю) #}
+
+{% if form.non_field_errors %}
+<div class="errors">{{ form.non_field_errors }}</div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <p>
+        <label for="{{ form.username.id_for_label }}">Логин</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+            <div class="errors">{{ form.username.errors }}</div>
+        {% endif %}
+    </p>
+
+    <p>
+        <label for="{{ form.password1.id_for_label }}">Пароль</label>
+        {{ form.password1 }}
+        {% if form.password1.errors %}
+            <div class="errors">{{ form.password1.errors }}</div>
+        {% endif %}
+    </p>
+
+    <p>
+        <label for="{{ form.password2.id_for_label }}">Подтверждение пароля</label>
+        {{ form.password2 }}
+        {% if form.password2.errors %}
+            <div class="errors">{{ form.password2.errors }}</div>
+        {% endif %}
+    </p>
+    <button class="btn" type="submit">Создать аккаунт</button>
+</form>
+{% endblock content %}
