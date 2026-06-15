@@ -54,4 +54,131 @@
     {% else %}
         <p class="muted">У вас пока нет ни одной дела.</p>
     {% endif %}
+<style>
+    /* 1. Глобальный современный шрифт для всего контента в блоке */
+
+    h1, table, .btn, .pagination, span, p {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: #1f2937; /* Приятный темно-серый цвет вместо резкого черного */
+    }
+
+    /* 2. Стилизация и центрирование таблицы */
+    table {
+        margin: 24px auto; /* Центрирует таблицу на странице и задает отступы сверху/снизу */
+        width: 100%;
+        max-width: 900px; /* Ограничивает максимальную ширину для удобства чтения */
+        border-collapse: collapse;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        border-radius: 8px;
+        overflow: hidden; /* Чтобы скругление углов работало вместе с тенью */
+        background-color: #ffffff;
+    }
+
+    th, td {
+        padding: 12px 16px;
+        text-align: left;
+        font-size: 0.95rem;
+    }
+
+    th {
+        background-color: #f3f4f6;
+        color: #4b5563;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+    }
+
+    tr {
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    tr:last-child {
+        border-bottom: none;
+    }
+
+    tr:hover {
+        background-color: #f9fafb; /* Эффект наведения на строку таблицы */
+    }
+
+    /* Ссылки внутри таблицы */
+    td a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    td a:hover {
+        text-decoration: underline;
+    }
+
+    /* 3. Центрирование заголовка и кнопки (опционально, для общего баланса) */
+    h1 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 16px;
+    }
+
+    p:has(.btn) {
+        text-align: center;
+    }
+
+    /* Современный вид для существующего класса .btn */
+    .btn {
+        display: inline-block;
+        background-color: #2563eb;
+        color: #ffffff !important;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: background-color 0.2s ease;
+    }
+
+    .btn:hover {
+        background-color: #1d4ed8;
+    }
+
+    /* 4. Центрирование и стилизация подвала таблицы и пагинации */
+    span, .muted {
+        display: block;
+        text-align: center;
+        font-size: 0.9rem;
+        margin-top: 8px;
+    }
+
+    .muted {
+        color: #6b7280;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .pagination a {
+        color: #2563eb;
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 6px 12px;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+    }
+
+    .pagination a:hover {
+        background-color: #f3f4f6;
+        border-color: #d1d5db;
+    }
+
+    .pagination span {
+        margin: 0;
+        color: #4b5563;
+        font-size: 0.9rem;
+    }
+</style>
 {% endblock content %}

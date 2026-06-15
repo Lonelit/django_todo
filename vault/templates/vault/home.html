@@ -1,6 +1,134 @@
 {% extends 'vault/base.html' %}
 {% load static %}
 {% block content %}
-<img src="{% static 'img/drakon.jpg' %}" width="257px" height="376px">
-<div class="my-style">Список моих дел</div>
+<div class="promo-container">
+    <!-- Блок с картинкой -->
+    <div class="image-wrapper">
+        <img src="{% static 'img/task.jpg' %}" alt="Список дел" width="755" height="367" class="modern-img">
+    </div>
+
+    <!-- Заголовок -->
+    <h1 class="my-style">Список моих дел</h1>
+
+    <!-- Инструкция -->
+    <div class="instruction-card">
+        <p class="instruction-title">Чтобы создать свой список дел, нужно всего несколько шагов:</p>
+        <ol class="modern-list">
+            <li>
+                Зарегистрируйся
+                <a href="{% url 'register' %}" class="modern-link">тут</a>
+            </li>
+            <li>
+                Если аккаунт уже есть -
+                <a href="{% url 'login' %}" class="modern-link">залогинься</a>
+            </li>
+            <li>
+                Перейди в раздел
+                <a href="{% url 'todo_list' %}" class="modern-link">Список моих дел</a>
+            </li>
+            <li>
+                Создай свой список, чтобы ничего не забыть
+                <a href="{% url 'todo_create' %}" class="modern-link">+</a>
+            </li>
+            <li>
+                Для поддержки проекта перейди
+                <a href="{% url 'about' %}" class="modern-link">О сайте</a>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<style>
+    /* Современные стили с использованием CSS-переменных для легкой настройки */
+    :root {
+        --primary-color: #2563eb;       /* Современный синий акцент */
+        --primary-hover: #1d4ed8;       /* Цвет ссылки при наведении */
+        --text-main: #1f2937;           /* Глубокий темный для текста */
+        --text-muted: #4b5563;          /* Серый для подзаголовков */
+        --bg-card: #f9fafb;             /* Легкий серый фон для карточки */
+        --radius: 12px;                 /* Скругление углов */
+        --transition: all 0.2s ease;
+    }
+
+    /* Главный контейнер (центрирует контент по центру экрана) */
+    .promo-container {
+        max-width: 755px;
+        margin: 40px auto;
+        padding: 0 20px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: var(--text-main);
+    }
+
+    /* Обертка для картинки с современным скруглением и тенью */
+    .image-wrapper {
+        margin-bottom: 24px; /* Отступ снизу до заголовка */
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+
+    .modern-img {
+        display: block;
+        width: 100%;
+        height: auto; /* Делает картинку адаптивной */
+        object-fit: cover;
+    }
+
+    /* Современный центрированный заголовок */
+    .my-style {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        margin-top: 0;
+        margin-bottom: 32px; /* Отступ от заголовка до карточки */
+    }
+
+    /* Карточка с инструкцией */
+    .instruction-card {
+        background-color: var(--bg-card);
+        padding: 24px 32px;
+        border-radius: var(--radius);
+        border: 1px solid #f3f4f6;
+    }
+
+    .instruction-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        margin-top: 0;
+        margin-bottom: 16px;
+    }
+
+    /* Стильный нумерованный список */
+    .modern-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+    .modern-list li {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 12px;
+        color: var(--text-main);
+    }
+
+    .modern-list li:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Аккуратная ссылка с плавным подчеркиванием */
+    .modern-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 2px solid transparent;
+        transition: var(--transition);
+    }
+
+    .modern-link:hover {
+        color: var(--primary-hover);
+        border-bottom-color: var(--primary-hover);
+    }
+</style>
 {% endblock content %}
